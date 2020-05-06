@@ -78,6 +78,6 @@ if __name__ == '__main__':
             #print(line)
             for tok, tag in zip(all_tokens, all_tags):
                 #print(tok, tag)
-                fout.write(str(tok) + ' ' + tag)
+                fout.write(str(tok) + '\t' + tag)
                 fout.write('\n')
             fout.write('\n')
