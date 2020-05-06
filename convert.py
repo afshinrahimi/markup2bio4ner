@@ -7,8 +7,12 @@ import re
 import en_core_web_sm #spacy
 
 
-data_dir = './data/indonesian_bert_all/Indonesian/ner/'
 
+
+def cleanhtml(raw_html):
+  cleanr = re.compile('<.*?>')
+  cleantext = re.sub(cleanr, '', raw_html)
+  return cleantext
 
 def xml_iter(file_):
     with open(file_, 'r') as fin:
@@ -23,6 +27,7 @@ def markupline2bio(line):
         #print(record)
         #print(parse(record))
         #print(record[35:40], record[81:90])
+        tags = re.findall(r'<ENAMEX\s+TYPE=\"(.+?)\">(.+?)</ENAMEX>', record)
         prev_start = 0
         prev_end = 0
         all_tokens = []
@@ -57,19 +62,22 @@ def markupline2bio(line):
         return all_tokens, all_tags
 
 if __name__ == '__main__':
-    xml_iterator = xml_iter(os.path.join(data_dir, 'data_train_github.txt'))
+    data_dir = './data/indonesian_bert_all/Indonesian/ner/'
+    xml_iterator = xml_iter(os.path.join(data_dir, 'data_train_ugm.txt'))
+    output_file = os.path.join(data_dir, 'data_train_ugm.bio')
     #nlp = spacy.load("en_core_web_sm")
     nlp = en_core_web_sm.load()
-
-    i = 0
-    for line in xml_iterator:
-        i += 1
-        if i > 10:
-            break
-        all_tokens, all_tags = markupline2bio(line.strip())
-        #print(all_tokens)
-        #print(all_tags)
-        print(line)
-        for tok, tag in zip(all_tokens, all_tags):
-            print(tok, tag)
-        print()
+    with open(output_file, 'w') as fout:
+        for i, line in enumerate(xml_iterator):
+            if i > 10:
+                #break
+                pass
+            all_tokens, all_tags = markupline2bio(line.strip())
+            #print(all_tokens)
+            #print(all_tags)
+            #print(line)
+            for tok, tag in zip(all_tokens, all_tags):
+                #print(tok, tag)
+                fout.write(str(tok) + ' ' + tag)
+                fout.write('\n')
+            fout.write('\n')
