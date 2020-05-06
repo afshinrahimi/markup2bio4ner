@@ -23,7 +23,6 @@ def markupline2bio(line):
         #print(record)
         #print(parse(record))
         #print(record[35:40], record[81:90])
-        tags = re.findall(r'<ENAMEX\s+TYPE=\"(.+?)\">(.+?)</ENAMEX>', record)
         prev_start = 0
         prev_end = 0
         all_tokens = []
