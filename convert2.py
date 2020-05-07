@@ -9,10 +9,7 @@ import en_core_web_sm #spacy
 
 #for formats such as <PERSON> John </PERSON> went to <ORG> ANU University </ORG>
 
-def cleanhtml(raw_html):
-  cleanr = re.compile('<.*?>')
-  cleantext = re.sub(cleanr, '', raw_html)
-  return cleantext
+
 
 def xml_iter(file_):
     with open(file_, 'r') as fin:
