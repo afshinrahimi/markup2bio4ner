@@ -6,7 +6,7 @@ import os
 import re
 import en_core_web_sm #spacy
 
-
+# to convert formats such as <ENAMEX type="LOCATION">Italy</ENAMEX> is experiencing an economic boom.
 
 def xml_iter(file_):
     with open(file_, 'r') as fin:
