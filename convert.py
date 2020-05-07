@@ -8,12 +8,6 @@ import en_core_web_sm #spacy
 
 
 
-
-def cleanhtml(raw_html):
-  cleanr = re.compile('<.*?>')
-  cleantext = re.sub(cleanr, '', raw_html)
-  return cleantext
-
 def xml_iter(file_):
     with open(file_, 'r') as fin:
         for line in fin:
@@ -27,7 +21,7 @@ def markupline2bio(line):
         #print(record)
         #print(parse(record))
         #print(record[35:40], record[81:90])
-        tags = re.findall(r'<ENAMEX\s+TYPE=\"(.+?)\">(.+?)</ENAMEX>', record)
+        #tags = re.findall(r'<ENAMEX\s+TYPE=\"(.+?)\">(.+?)</ENAMEX>', record)
         prev_start = 0
         prev_end = 0
         all_tokens = []
