@@ -3,6 +3,6 @@ Converts Inline XML Markup (ENAMEX tags) to BIO for Named Entity Recognition (NE
 
 # Two scripts
 
-One for <ENAMEX TYPE="LOCATION"> Australia </EVAMEX>
+One for `<ENAMEX TYPE="LOCATION"> Australia </EVAMEX>`
 and
-one for <Location> Australia </Location>
+one for `<Location> Australia </Location>`
